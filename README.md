@@ -1,3 +1,5 @@
+NumberToWords
+
 #This solution is created as part of the Coding challenge for AKQA. Solution has 3 components:
 
 #NumberToWords.Service
