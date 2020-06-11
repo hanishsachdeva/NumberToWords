@@ -1,0 +1,42 @@
+﻿@model NumberToWords.Web.Models.Person
+@{
+    ViewBag.Title = "Number To Words";
+}
+
+<div class="jumbotron">
+    <h2>Number to Words</h2>
+    <p class="lead">Please enter your name & number and click submit to convert number into words.</p>
+</div>
+
+@using (Html.BeginForm("ConvertToWord", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Number, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Number, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary btn-lg" value="Convert" />
+        </div>
+    </div>
+
+    if (Model != null && !string.IsNullOrEmpty(Model.Name) && !string.IsNullOrEmpty(Model.Words))
+        {
+            <div class="col-md-12">
+                <p><h4>Name:</h4> @Model.Name</p>
+                <p><h4>Words:</h4> @Model.Words</p>
+            </div>
+        }
+}
